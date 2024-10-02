@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbox - Plataforma de Aprendizagem Multissensorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E3F2FD; /* Fundo azul claro */
+        }
+        .container {
+            max-width: 600px; /* Largura máxima */
+            margin: 50px auto; /* Centralizar e margem superior */
+            padding: 20px; /* Espaçamento interno */
+            background-color: #FFFFFF; /* Fundo branco */
+            border-radius: 5px; /* Bordas arredondadas */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+        }
+        .nav-button {
+            background-color: #007BFF; /* Azul */
+            color: white; /* Texto branco */
+            border: none; /* Sem borda */
+            padding: 10px 20px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de ponteiro */
+            margin: 10px; /* Margem */
+        }
+        .nav-button:active {
+            background-color: #0056b3; /* Azul mais escuro ao clicar */
+        }
+        .login-container {
+            margin-bottom: 20px; /* Margem inferior */
+        }
+        .chat-container {
+            margin-top: 20px; /* Margem superior */
+        }
+        .chat-box {
+            border: 1px solid #ccc; /* Borda cinza */
+            padding: 10px; /* Espaçamento interno */
+            height: 300px; /* Altura */
+            overflow-y: scroll; /* Rolagem vertical */
+            background-color: #f9f9f9; /* Fundo cinza claro */
+        }
+        .message {
+            margin-bottom: 10px; /* Margem inferior */
+        }
+        .message-form {
+            display: flex; /* Layout flexível */
+            margin-top: 10px; /* Margem superior */
+        }
+        .message-form input {
+            flex: 1; /* Ocupa o espaço disponível */
+            padding: 10px; /* Espaçamento interno */
+            border: 1px solid #ccc; /* Borda cinza */
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+        .message-form button {
+            margin-left: 10px; /* Margem à esquerda */
+        }
+        .confirmation-message {
+            color: green; /* Texto verde */
+            margin-top: 10px; /* Margem superior */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbox</h1>
+        <p>Converse em tempo real com outros alunos e professores. Compartilhe ideias, tire dúvidas e colabore para um aprendizado mais dinâmico e interativo!</p>
+        
+        <!-- Formulário de Login -->
+        <div class="login-container">
+            <h2>Login</h2>
+            <form onsubmit="showConfirmation(event, 'login')">
+                <label for="username">Nome de Usuário:</label><br>
+                <input type="text" id="username" name="username" required><br>
+                <label for="password">Senha:</label><br>
+                <input type="password" id="password" name="password" required><br>
+                <button type="submit" class="nav-button">Entrar</button>
+            </form>
+            <div id="login-confirmation" class="confirmation-message" style="display: none;">Login realizado com sucesso!</div>
+        </div>
+        
+        <!-- Área de Chat -->
+        <div class="chat-container">
+            <div class="chat-box">
+                <div class="message">Usuário1: Olá!</div>
+                <div class="message">Usuário2: Oi, tudo bem?</div>
+                <!-- Mais mensagens aqui -->
+            </div>
+            <form class="message-form" onsubmit="showConfirmation(event, 'message')">
+                <input type="text" id="message" name="message" placeholder="Digite sua mensagem..." required>
+                <button type="submit" class="nav-button">Enviar</button>
+            </form>
+            <div id="message-confirmation" class="confirmation-message" style="display: none;">Mensagem enviada com sucesso!</div>
+        </div>
+        
+        <button class="nav-button" onclick="location.href='index.html'">Voltar ao Início</button>
+    </div>
+    <script>
+        function showConfirmation(event, type) {
+            event.preventDefault();
+            document.getElementById(type + '-confirmation').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

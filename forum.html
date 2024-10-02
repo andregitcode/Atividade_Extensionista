@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fórum - Plataforma de Aprendizagem Multissensorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E3F2FD; /* Fundo azul claro */
+        }
+        .container {
+            max-width: 600px; /* Largura máxima */
+            margin: 50px auto; /* Centralizar e margem superior */
+            padding: 20px; /* Espaçamento interno */
+            background-color: #FFFFFF; /* Fundo branco */
+            border-radius: 5px; /* Bordas arredondadas */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+        }
+        .nav-button {
+            background-color: #007BFF; /* Azul */
+            color: white; /* Texto branco */
+            border: none; /* Sem borda */
+            padding: 10px 20px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de ponteiro */
+            margin: 10px; /* Margem */
+        }
+        .nav-button:active {
+            background-color: #0056b3; /* Azul mais escuro ao clicar */
+        }
+        .topics-container {
+            margin-top: 20px; /* Margem superior */
+        }
+        .topics-container ul {
+            list-style-type: none; /* Sem marcadores */
+            padding: 0; /* Sem preenchimento */
+        }
+        .topics-container li {
+            margin-bottom: 10px; /* Margem inferior */
+        }
+        .topics-container a {
+            text-decoration: none; /* Sem sublinhado */
+            color: #007BFF; /* Texto azul */
+            cursor: pointer; /* Cursor de ponteiro */
+        }
+        .topics-container a:hover {
+            text-decoration: underline; /* Sublinhado ao passar o mouse */
+        }
+        .new-topic-container {
+            margin-top: 20px; /* Margem superior */
+        }
+        .new-topic-container form {
+            display: flex; /* Layout flexível */
+            flex-direction: column; /* Direção da coluna */
+        }
+        .new-topic-container input, .new-topic-container textarea {
+            margin-bottom: 10px; /* Margem inferior */
+            padding: 10px; /* Espaçamento interno */
+            border: 1px solid #ccc; /* Borda cinza */
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+        .confirmation-message {
+            color: green; /* Texto verde */
+            margin-top: 10px; /* Margem superior */
+        }
+        .topic-content {
+            display: none; /* Esconder elemento */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fórum</h1>
+        <p>Participe das discussões e compartilhe suas ideias com a comunidade escolar.</p>
+        
+        <!-- Seção de Tópicos -->
+        <div class="topics-container">
+            <h2>Tópicos Recentes</h2>
+            <ul>
+                <li><a onclick="showTopic('matematica')">Discussão sobre Matemática</a></li>
+                <li><a onclick="showTopic('ciencias')">Dicas de Estudo para Ciências</a></li>
+                <li><a onclick="showTopic('historia')">Projetos de História</a></li>
+                <!-- Mais tópicos aqui -->
+            </ul>
+        </div>
+        
+        <!-- Conteúdo dos Tópicos -->
+        <div id="matematica" class="topic-content">
+            <h2>Discussão sobre Matemática</h2>
+            <p>Bem-vindo ao tópico de discussão sobre Matemática. Compartilhe suas dúvidas e ideias!</p>
+            <button class="nav-button" onclick="hideTopic()">Voltar ao Fórum</button>
+        </div>
+        <div id="ciencias" class="topic-content">
+            <h2>Dicas de Estudo para Ciências</h2>
+            <p>Aqui você encontra dicas valiosas para melhorar seus estudos em Ciências.</p>
+            <button class="nav-button" onclick="hideTopic()">Voltar ao Fórum</button>
+        </div>
+        <div id="historia" class="topic-content">
+            <h2>Projetos de História</h2>
+            <p>Discuta e compartilhe ideias sobre projetos de História.</p>
+            <button class="nav-button" onclick="hideTopic()">Voltar ao Fórum</button>
+        </div>
+        
+        <!-- Formulário para Criar Novo Tópico -->
+        <div class="new-topic-container">
+            <h2>Criar Novo Tópico</h2>
+            <form onsubmit="showConfirmation(event, 'topic')">
+                <label for="topicTitle">Título do Tópico:</label><br>
+                <input type="text" id="topicTitle" name="topicTitle" required><br>
+                <label for="topicContent">Conteúdo:</label><br>
+                <textarea id="topicContent" name="topicContent" rows="4" cols="50" required></textarea><br>
+                <button type="submit" class="nav-button">Criar Tópico</button>
+            </form>
+            <div id="topic-confirmation" class="confirmation-message" style="display: none;">Tópico criado com sucesso!</div>
+        </div>
+        
+        <button class="nav-button" onclick="location.href='index.html'">Voltar ao Início</button>
+    </div>
+    <script>
+        function showConfirmation(event, type) {
+            event.preventDefault();
+            document.getElementById(type + '-confirmation').style.display = 'block';
+        }
+
+        function showTopic(topicId) {
+            document.querySelectorAll('.topic-content').forEach(function(content) {
+                content.style.display = 'none';
+            });
+            document.getElementById(topicId).style.display = 'block';
+        }
+
+        function hideTopic() {
+            document.querySelectorAll('.topic-content').forEach(function(content) {
+                content.style.display = 'none';
+            });
+        }
+    </script>
+</body>
+</html>

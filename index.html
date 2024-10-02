@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Início - Plataforma de Aprendizagem Multissensorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E3F2FD; /* Fundo azul claro */
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px; /* Margem superior */
+        }
+        .nav-button {
+            background-color: #007BFF; /* Azul */
+            color: white; /* Texto branco */
+            border: none; /* Sem borda */
+            padding: 10px 20px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de ponteiro */
+            margin: 10px; /* Margem */
+        }
+        .nav-button:active {
+            background-color: #0056b3; /* Azul mais escuro ao clicar */
+        }
+        .description {
+            margin: 20px; /* Margem */
+            font-size: 18px; /* Tamanho da fonte */
+        }
+        .accordion {
+            background-color: #FFFFFF; /* Fundo branco */
+            color: #444; /* Texto cinza escuro */
+            cursor: pointer; /* Cursor de ponteiro */
+            padding: 18px; /* Espaçamento interno */
+            width: 100%; /* Largura total */
+            border: none; /* Sem borda */
+            text-align: left; /* Texto alinhado à esquerda */
+            outline: none; /* Sem contorno */
+            font-size: 15px; /* Tamanho da fonte */
+            transition: 0.4s; /* Transição suave */
+        }
+        .active, .accordion:hover {
+            background-color: #ccc; /* Fundo cinza ao ativar ou passar o mouse */
+        }
+        .panel {
+            padding: 0 18px; /* Espaçamento interno */
+            background-color: white; /* Fundo branco */
+            display: none; /* Inicialmente escondido */
+            overflow: hidden; /* Ocultar conteúdo excedente */
+        }
+        .highlights {
+            background-color: #FFEB3B; /* Amarelo */
+        }
+        .testimonials {
+            background-color: #FFCDD2; /* Vermelho claro */
+        }
+        .resources {
+            background-color: #C8E6C9; /* Verde claro */
+        }
+        .contact {
+            margin: 20px; /* Margem */
+            padding: 20px; /* Espaçamento interno */
+            background-color: #FFFFFF; /* Fundo branco */
+            border-radius: 5px; /* Bordas arredondadas */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve */
+        }
+        .confirmation-message {
+            color: green; /* Texto verde */
+            margin-top: 10px; /* Margem superior */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo à Plataforma de Aprendizagem Multissensorial</h1>
+        <p class="description">
+            Nossa plataforma oferece uma experiência de aprendizagem rica e interativa, combinando diversos recursos para atender às necessidades de todos os alunos. 
+            Com o <strong>AppAcessível</strong>, você terá acesso a quizzes interativos, fóruns de discussão, chatbox para comunicação em tempo real e uma seção de feedback para compartilhar suas opiniões. 
+            Nosso objetivo é proporcionar um ambiente de aprendizado inclusivo e dinâmico, onde cada aluno pode explorar e aprender de maneira personalizada e envolvente. 
+            Aproveite os recursos multissensoriais para melhorar sua compreensão e retenção de informações, e participe ativamente da nossa comunidade educacional.
+        </p>
+        
+        <button class="nav-button" onclick="location.href='quizinterativo.html'">Quiz Interativo</button>
+        <button class="nav-button" onclick="location.href='chatbox.html'">Chatbox</button>
+        <button class="nav-button" onclick="location.href='forum.html'">Fórum</button>
+        <button class="nav-button" onclick="location.href='feedback.html'">Feedback</button>
+        
+        <button class="accordion highlights">Destaques</button>
+        <div class="panel">
+            <p>Confira as últimas novidades e atualizações da nossa plataforma.</p>
+            <!-- Adicione blocos de notícias ou atualizações aqui -->
+        </div>
+        
+        <button class="accordion testimonials">Depoimentos</button>
+        <div class="panel">
+            <p>Veja o que nossos usuários estão dizendo:</p>
+            <blockquote>"A plataforma me ajudou a aprender de uma maneira totalmente nova e envolvente!" - Aluno A</blockquote>
+            <blockquote>"Os recursos multissensoriais realmente fazem a diferença no meu aprendizado." - Aluno B</blockquote>
+        </div>
+        
+        <button class="accordion resources">Recursos e Suporte</button>
+        <div class="panel">
+            <p>Encontre tutoriais, guias e suporte técnico para aproveitar ao máximo nossa plataforma.</p>
+            <!-- Links para tutoriais e suporte -->
+        </div>
+        
+        <div class="contact">
+            <h2>Fale com a gente</h2>
+            <p>Se você encontrar algum problema ou tiver sugestões, por favor, entre em contato conosco.</p>
+            <form onsubmit="showConfirmation(event, 'contact')">
+                <label for="contactMessage">Sua mensagem:</label><br>
+                <textarea id="contactMessage" name="contactMessage" rows="4" cols="50"></textarea><br>
+                <button type="submit" class="nav-button">Enviar</button>
+            </form>
+            <div id="contact-confirmation" class="confirmation-message" style="display: none;">Mensagem enviada com sucesso!</div>
+        </div>
+    </div>
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+        function showConfirmation(event, type) {
+            event.preventDefault();
+            document.getElementById(type + '-confirmation').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
+
+

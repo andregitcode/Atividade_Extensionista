@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AppAcessível: Plataforma de Aprendizagem Multissensorial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E3F2FD; /* Fundo azul claro */
+        }
+        .question {
+            margin-bottom: 20px; /* Margem inferior */
+            padding: 10px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            border: 2px solid #007BFF; /* Borda azul */
+            background-color: #E8F5E9; /* Fundo verde claro */
+            max-width: 600px; /* Largura máxima */
+            margin-left: auto; /* Centralizar horizontalmente */
+            margin-right: auto; /* Centralizar horizontalmente */
+        }
+        .hidden {
+            display: none; /* Esconder elemento */
+        }
+        .correct {
+            border: 2px solid green; /* Borda verde */
+        }
+        .incorrect {
+            border: 2px solid red; /* Borda vermelha */
+        }
+        #timerContainer {
+            text-align: center; /* Centralizar texto */
+            margin-bottom: 20px; /* Margem inferior */
+        }
+        #timer {
+            font-size: 20px; /* Tamanho da fonte */
+            color: red; /* Cor do texto */
+        }
+        #progress {
+            width: 100%; /* Largura total */
+            background-color: #f3f3f3; /* Fundo cinza claro */
+            margin-bottom: 20px; /* Margem inferior */
+        }
+        #progressBar {
+            width: 0%; /* Largura inicial */
+            height: 30px; /* Altura */
+            background-color: #4caf50; /* Fundo verde */
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+        #result {
+            margin-top: 20px; /* Margem superior */
+            padding: 10px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            border: 2px solid #28A745; /* Borda verde */
+            background-color: #E8F5E9; /* Fundo verde claro */
+            max-width: 300px; /* Largura máxima */
+            margin-left: auto; /* Centralizar horizontalmente */
+            margin-right: auto; /* Centralizar horizontalmente */
+            display: none; /* Esconder inicialmente */
+            text-align: center; /* Centralizar texto */
+        }
+        .confirm-button {
+            background-color: #007BFF; /* Azul */
+            color: white; /* Texto branco */
+            border: none; /* Sem borda */
+            padding: 10px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de ponteiro */
+        }
+        .confirm-button:active {
+            background-color: #0056b3; /* Azul mais escuro ao clicar */
+        }
+        .skip-button {
+            background-color: #28A745; /* Verde */
+            color: white; /* Texto branco */
+            border: none; /* Sem borda */
+            padding: 10px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Cursor de ponteiro */
+        }
+        .skip-button:active {
+            background-color: #218838; /* Verde mais escuro ao clicar */
+        }
+    </style>
+</head>
+<body>
+    <h1>AppAcessível: Plataforma de Aprendizagem Multissensorial</h1>
+    <div id="imageContainer" style="text-align: left; margin-bottom: 20px;">
+        <img src="4634b9e5-e1e8-4fc5-ad6f-ed4e131c64a8.jpg" alt="Imagem do Quiz" style="max-width: 10%; height: auto;">
+    </div>
+    <div id="timerContainer">
+        <div id="timer">Tempo restante: <span id="time">30</span> segundos</div>
+    </div>
+    <div id="progress">
+        <div id="progressBar"></div>
+    </div>
+    <button id="startButton" class="confirm-button" onclick="startQuiz()">Iniciar Quiz</button>
+    <div id="quizContainer" style="display: none;">
+        <div id="question1" class="question">
+            <h2>Jogador 1 - Pergunta 1</h2>
+            <p>Qual é o resultado de 7 x 8?</p>
+            <input type="radio" name="q1" value="A"> A) 54<br>
+            <input type="radio" name="q1" value="B"> B) 56<br>
+            <input type="radio" name="q1" value="C"> C) 58<br>
+            <input type="radio" name="q1" value="D"> D) 60<br>
+            <button class="confirm-button" onclick="checkAnswer(1, 'B', 1)">Confirmar</button>
+            <button class="skip-button" onclick="skipQuestion(1)">Pular</button>
+        </div>
+        <div id="question2" class="question hidden">
+            <h2>Jogador 2 - Pergunta 1</h2>
+            <p>Qual é o resultado de 9 x 6?</p>
+            <input type="radio" name="q2" value="A"> A) 52<br>
+            <input type="radio" name="q2" value="B"> B) 54<br>
+            <input type="radio" name="q2" value="C"> C)56<br>
+            <input type="radio" name="q2" value="D"> D) 58<br>
+            <button class="confirm-button" onclick="checkAnswer(2, 'B', 2)">Confirmar</button>
+            <button class="skip-button" onclick="skipQuestion(2)">Pular</button>
+        </div>
+        <div id="question3" class="question hidden">
+            <h2>Jogador 1 - Pergunta 2</h2>
+            <p>Qual é o maior planeta do sistema solar?</p>
+            <input type="radio" name="q3" value="A"> A) Terra<br>
+            <input type="radio" name="q3" value="B"> B) Marte<br>
+            <input type="radio" name="q3" value="C"> C) Júpiter<br>
+            <input type="radio" name="q3" value="D"> D) Saturno<br>
+            <button class="confirm-button" onclick="checkAnswer(3, 'C', 1)">Confirmar</button>
+            <button class="skip-button" onclick="skipQuestion(3)">Pular</button>
+        </div>
+        <div id="question4" class="question hidden">
+            <h2>Jogador 2 - Pergunta 2</h2>
+            <p>Qual é o nome do gás essencial para a respiração humana?</p>
+            <input type="radio" name="q4" value="A"> A) Nitrogênio<br>
+            <input type="radio" name="q4" value="B"> B) Oxigênio<br>
+            <input type="radio" name="q4" value="C"> C) Hidrogênio<br>
+            <input type="radio" name="q4" value="D"> D) Dióxido de carbono<br>
+            <button class="confirm-button" onclick="checkAnswer(4, 'B', 2)">Confirmar</button>
+            <button class="skip-button" onclick="skipQuestion(4)">Pular</button>
+        </div>
+        <!-- Adicione mais perguntas aqui seguindo o mesmo formato -->
+    </div>
+    <div id="result">
+        <h2 id="winner"></h2>
+        <p id="result1"></p>
+        <p id="result2"></p>
+    </div>
+    <button class="confirm-button" onclick="location.href='index.html'">Voltar ao Início</button>
+    <script>
+        var score1 = 0;
+        var score2 = 0;
+        var currentQuestion = 1;
+        var timer;
+
+        function startQuiz() {
+            document.getElementById('startButton').style.display = 'none'; // Esconde o botão de iniciar
+            document.getElementById('quizContainer').style.display = 'block'; // Mostra o quiz
+            startTimer(currentQuestion); // Inicia o cronômetro
+        }
+
+        function startTimer(questionNumber) {
+            var timeLeft = 30;
+            document.getElementById('time').innerText = timeLeft;
+            timer = setInterval(function() {
+                timeLeft--;
+                document.getElementById('time').innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert('Tempo esgotado!');
+                    nextQuestion(questionNumber);
+                }
+            }, 1000);
+        }
+
+        function checkAnswer(questionNumber, correctAnswer, player) {
+            clearInterval(timer);
+            var radios = document.getElementsByName('q' + questionNumber);
+            var userAnswer;
+            for (var i = 0; i < radios.length; i++) {
+                if (radios[i].checked) {
+                userAnswer = radios[i].value;
+                break;
+            }
+        }
+
+        if (userAnswer === correctAnswer) {
+            if (player === 1) {
+                score1++;
+            } else {
+                score2++;
+            }
+            alert('Correto!');
+            document.getElementById('question' + questionNumber).classList.add('correct');
+        } else {
+            alert('Errado! A resposta correta é ' + correctAnswer);
+            document.getElementById('question' + questionNumber).classList.add('incorrect');
+        }
+
+        nextQuestion(questionNumber);
+    }
+
+    function skipQuestion(questionNumber) {
+        clearInterval(timer);
+        nextQuestion(questionNumber);
+    }
+
+    function nextQuestion(questionNumber) {
+        document.getElementById('question' + questionNumber).classList.add('hidden');
+        currentQuestion++;
+        updateProgressBar();
+        if (document.getElementById('question' + currentQuestion)) {
+            document.getElementById('question' + currentQuestion).classList.remove('hidden');
+            startTimer(currentQuestion);
+        } else {
+            displayResult();
+        }
+    }
+
+    function updateProgressBar() {
+        var totalQuestions = 4; // Atualize este valor conforme o número total de perguntas
+        var progress = (currentQuestion - 1) / totalQuestions * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+    }
+
+    function displayResult() {
+        var resultText = '';
+        if (score1 > score2) {
+            resultText = 'Jogador 1 venceu!';
+        } else if (score2 > score1) {
+            resultText = 'Jogador 2 venceu!';
+        } else {
+            resultText = 'Empate!';
+        }
+        document.getElementById('winner').innerText = resultText;
+        document.getElementById('result1').innerText = 'Jogador 1 acertou ' + score1 + ' de ' + Math.floor(currentQuestion / 2) + ' perguntas.';
+        document.getElementById('result2').innerText = 'Jogador 2 acertou ' + score2 + ' de ' + Math.floor(currentQuestion / 2) + ' perguntas.';
+        document.getElementById('result').style.display = 'block'; // Mostrar o resultado
+        document.getElementById('timerContainer').style.display = 'none'; // Ocultar o temporizador
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
